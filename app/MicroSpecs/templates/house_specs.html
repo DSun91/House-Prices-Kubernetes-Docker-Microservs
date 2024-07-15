@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Specifications</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>House Specifications</h1>
+        <div class="specs-table">
+            <table>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Area Minus Basement</td>
+                    <td>{{ data.areaMinusBasement }}</td>
+                </tr>
+                <tr>
+                    <td>Basement Area</td>
+                    <td>{{ data.basement }}</td>
+                </tr>
+                <tr>
+                    <td>Bathrooms</td>
+                    <td>{{ data.bathrooms }}</td>
+                </tr>
+                <tr>
+                    <td>Bedrooms</td>
+                    <td>{{ data.bedrooms }}</td>
+                </tr>
+                <tr>
+                    <td>Build Year</td>
+                    <td>{{ data.buildYear }}</td>
+                </tr>
+                <tr>
+                    <td>Conditions</td>
+                    <td>{{ data.conditions }}</td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td>{{ data.date }}</td>
+                </tr>
+                <tr>
+                    <td>Floors</td>
+                    <td>{{ data.floors }}</td>
+                </tr>
+                <tr>
+                    <td>Grade</td>
+                    <td>{{ data.grade }}</td>
+                </tr>
+                <tr>
+                    <td>Living Area</td>
+                    <td>{{ data.livingArea }}</td>
+                </tr>
+                <tr>
+                    <td>Living Area Renovated</td>
+                    <td>{{ data.livingAreaRenov }}</td>
+                </tr>
+                <tr>
+                    <td>Lot Area</td>
+                    <td>{{ data.lotArea }}</td>
+                </tr>
+                <tr>
+                    <td>Lot Area Renovated</td>
+                    <td>{{ data.lotAreaRenov }}</td>
+                </tr>
+                <tr>
+                    <td>Renovation Area</td>
+                    <td>{{ data.renovationArea }}</td>
+                </tr>
+                <tr>
+                    <td>Waterfront</td>
+                    <td>{{ data.waterfront }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
