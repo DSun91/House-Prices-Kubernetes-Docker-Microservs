@@ -10,13 +10,8 @@ COPY . /app
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
 
-ENV FLASK_APP=MicroPrices/MicroservHousePrice.py
+ENV FLASK_APP=MicroBusinessInsight/MicroservHousesBusinessInsight.py
 
 ENV PYTHONPATH=/app
 
-# Make port 5000 available to the world outside this container
-EXPOSE 5000
-
-# Run micro.py when the container launches
-#CMD ["python", "MicroservHousePrice.py"]
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask","run","--host=0.0.0.0","--port=5000"]

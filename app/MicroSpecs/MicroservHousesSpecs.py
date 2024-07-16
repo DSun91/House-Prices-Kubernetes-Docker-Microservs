@@ -3,6 +3,7 @@ from markupsafe import escape
 from flask import render_template
 import pandas as pd
 import sqlite3
+import socket
 #http://127.0.0.1:5000/prices/6762810635
 app = Flask(__name__)
 def ReadDb(query, DbName):
@@ -25,6 +26,19 @@ def ReadDb(query, DbName):
 
     # Print the DataFrame to see the data
     return df
+
+
+@app.route("/", methods=['GET'])
+def get_host_ip():
+    hostname = socket.gethostname()
+    host_ip = socket.gethostbyname(hostname)
+
+    data = {
+        'hostname': hostname,
+        'ip_address': host_ip
+    }
+
+    return jsonify(data)
 @app.route("/specs/<int:id>",methods=['GET'])
 def GetSpecs(id):
     query = f'SELECT * FROM ATable WHERE "id"=={id}'
@@ -50,5 +64,5 @@ def GetSpecs(id):
     }
     return render_template("house_specs.html",data=data)
     #return jsonify(data)
-if __name__ == '__main__':
-    app.run(port=5004,debug=True)
+# if __name__ == '__main__':
+#     app.run(port=5004,debug=True)

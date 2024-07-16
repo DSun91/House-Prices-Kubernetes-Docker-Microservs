@@ -11,7 +11,6 @@ COPY . /app
 RUN pip install -r requirements.txt
 
 ENV FLASK_APP=main.py
+ENV PYTHONPATH=/app
 
-# Run micro.py when the container launches
-#CMD ["python", "MicroservHousePrice.py"]
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--host=0.0.0.0","--port=5005"]

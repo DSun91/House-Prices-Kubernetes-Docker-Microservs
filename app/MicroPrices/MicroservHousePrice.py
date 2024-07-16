@@ -29,7 +29,7 @@ def ReadDb(query, DbName):
 def GetPrice(id):
     query = f'SELECT * FROM ATable WHERE "id"=={id}'
 
-    df= ReadDb(query,"HousesDbPrice.db").reset_index(drop=True)
+    df=ReadDb(query,"HousesDbPrice.db").reset_index(drop=True)
     data = {
         'price': str(df["Price"][0])
     }
@@ -51,5 +51,5 @@ def GetPricesList():
 
 
 
-if __name__ == '__main__':
-    app.run(port=5003,debug=False)
+# if __name__ == '__main__':
+#     app.run(port=5003,debug=True)

@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  microserv1:
+  businessinsightcotainer:
     build:
       context: ./app
       dockerfile: Dockerfile
@@ -9,54 +9,79 @@ services:
       - "5000:5000"
     environment:
       - FLASK_APP=MicroBusinessInsight/MicroservHousesBusinessInsight.py
+      - PYTHONPATH=/app
     command: ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+    networks:
+      - mytestnetwork
 
-  microserv2:
+  geolocontainer:
     build:
       context: ./app
       dockerfile: Dockerfile
     ports:
-      - "5001:5000"
+      - "5001:5001"
     environment:
       - FLASK_APP=MicroGeoLoc/MicroservHousesGeoLoc.py
-    command: ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+      - PYTHONPATH=/app
+    command: ["flask", "run", "--host=0.0.0.0", "--port=5001"]
+    networks:
+      - mytestnetwork
 
-  microserv3:
+  neighborcontainer:
     build:
       context: ./app
       dockerfile: Dockerfile
     ports:
-      - "5002:5000"
+      - "5002:5002"
     environment:
       - FLASK_APP=MicroNeighbor/MicroservHousesNeighbor.py
-    command: ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+      - PYTHONPATH=/app
+    command: ["flask", "run", "--host=0.0.0.0", "--port=5002"]
+    networks:
+      - mytestnetwork
 
-  microserv4:
+
+  pricescontainer:
     build:
       context: ./app
       dockerfile: Dockerfile
     ports:
-      - "5003:5000"
+      - "5003:5003"
     environment:
       - FLASK_APP=MicroPrices/MicroservHousePrice.py
-    command: ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+      - PYTHONPATH=/app
+    command: ["flask", "run", "--host=0.0.0.0", "--port=5003"]
+    networks:
+      - mytestnetwork
 
-  microserv5:
+
+  housespecscontainer:
     build:
       context: ./app
       dockerfile: Dockerfile
     ports:
-      - "5004:5000"
+      - "5004:5004"
     environment:
       - FLASK_APP=MicroSpecs/MicroservHousesSpecs.py
-    command: ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+      - PYTHONPATH=/app
+    command: ["flask", "run", "--host=0.0.0.0", "--port=5004"]
+    networks:
+      - mytestnetwork
 
-  microserv6:
+
+  mainappcontainer:
     build:
       context: ./app
       dockerfile: Dockerfile
     ports:
-      - "5005:5000"
+      - "5005:5005"
     environment:
       - FLASK_APP=main.py
-    command: ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+      - PYTHONPATH=/app
+    command: ["flask", "run", "--host=0.0.0.0", "--port=5005"]
+    networks:
+      - mytestnetwork
+
+networks:
+  mytestnetwork:
+    driver: bridge
