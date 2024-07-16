@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advert Location</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map { height: 700px; }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<!-- Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+    // Ensure correct access to coordinates object
+    var latitude = {{ coordinates.latitude | safe }};
+    var longitude = {{ coordinates.longitude | safe }};
+    var postalCode = '{{ coordinates.postalCode | safe }}';
+
+    var map = L.map('map').setView([latitude, longitude], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+    }).addTo(map);
+
+    L.marker([latitude, longitude]).addTo(map)
+        .bindPopup('<b>Advert Location</b><br>Postal Code: ' + postalCode)
+        .openPopup();
+</script>
+
+</body>
+</html>

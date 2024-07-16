@@ -1,6 +1,5 @@
 import pandas as pd
 import sqlite3
-import seaborn as sns
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 1000)
 

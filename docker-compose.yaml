@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  microserv1:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=MicroBusinessInsight/MicroservHousesBusinessInsight.py
+    command: ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+
+  microserv2:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5000"
+    environment:
+      - FLASK_APP=MicroGeoLoc/MicroservHousesGeoLoc.py
+    command: ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+
+  microserv3:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "5002:5000"
+    environment:
+      - FLASK_APP=MicroNeighbor/MicroservHousesNeighbor.py
+    command: ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+
+  microserv4:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "5003:5000"
+    environment:
+      - FLASK_APP=MicroPrices/MicroservHousePrice.py
+    command: ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+
+  microserv5:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "5004:5000"
+    environment:
+      - FLASK_APP=MicroSpecs/MicroservHousesSpecs.py
+    command: ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+
+  microserv6:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "5005:5000"
+    environment:
+      - FLASK_APP=main.py
+    command: ["flask", "run", "--host=0.0.0.0", "--port=5000"]

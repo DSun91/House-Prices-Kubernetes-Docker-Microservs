@@ -9,18 +9,30 @@
 <body>
     <div class="container">
         <h1>House Prices</h1>
+
         <ul class="advert-list">
             {% for advert in adverts %}
                 <li class="advert-item">
                     <h2>Advert ID: {{ advert.id }}</h2>
                     <h3>Price: ${{ advert.Price }}</h3>
                     <p><a href="http://127.0.0.1:5004/specs/{{advert.id}}">House Specs</a></p>
-                    <p><a href="http://127.0.0.1:5000/business/{{advert.id}}">Views</a></p>
+                    <p><a href="http://127.0.0.1:5000/business/{{advert.id}}">Views </a></p>
                     <p><a href="http://127.0.0.1:5001/geoloc/{{advert.id}}">GeoLocation</a></p>
                     <p><a href="http://127.0.0.1:5002/neighbor/{{advert.id}}">Neighborhood</a></p>
                 </li>
             {% endfor %}
         </ul>
+
+
+        <div>
+        {% if page > 1 %}
+            <a href="?page={{ page - 1 }}">Previous</a>
+        {% endif %}
+
+        {% if page < total_pages %}
+            <a href="?page={{ page + 1 }}">Next</a>
+        {% endif %}
+    </div>
     </div>
 </body>
 </html>
