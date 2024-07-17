@@ -30,7 +30,7 @@ def ReadDb(query, DbName):
 def GetGeoLoc(id):
     query = f'SELECT * FROM ATable WHERE "id"=={id}'
 
-    df= ReadDb(query,"HousesDbGeoLoc.db").reset_index(drop=True)
+    df= ReadDb(query,"./MicroGeoLoc/HousesDbGeoLoc.db").reset_index(drop=True)
     data = {
         'postalCode': str(df["Postal Code"][0]),
         'latitude': str(df["Lattitude"][0]),

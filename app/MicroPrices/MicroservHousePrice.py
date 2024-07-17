@@ -3,8 +3,11 @@ from markupsafe import escape
 from flask import render_template
 import pandas as pd
 import sqlite3
+import logging
+from logging.handlers import RotatingFileHandler
 #http://127.0.0.1:5000/prices/6762810635
 app = Flask(__name__)
+
 def ReadDb(query, DbName):
     # Step 1: Connect to the SQLite database
     conn = sqlite3.connect(DbName)  # Replace with your database name
@@ -29,7 +32,7 @@ def ReadDb(query, DbName):
 def GetPrice(id):
     query = f'SELECT * FROM ATable WHERE "id"=={id}'
 
-    df=ReadDb(query,"HousesDbPrice.db").reset_index(drop=True)
+    df=ReadDb(query,"./MicroPrices/HousesDbPrice.db").reset_index(drop=True)
     data = {
         'price': str(df["Price"][0])
     }
@@ -40,7 +43,7 @@ import json
 def GetPricesList():
     query = f'SELECT * FROM ATable'
 
-    df= ReadDb(query,"HousesDbPrice.db").reset_index(drop=True)
+    df= ReadDb(query,"./MicroPrices/HousesDbPrice.db").reset_index(drop=True)
     df.applymap(str)
     records = df.to_dict(orient='records')
 

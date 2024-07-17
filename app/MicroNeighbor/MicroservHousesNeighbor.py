@@ -30,7 +30,7 @@ def ReadDb(query, DbName):
 def GetNeighborhood(id):
     query = f'SELECT * FROM ATable WHERE "id"=={id}'
 
-    df= ReadDb(query,"HousesDbNeighbor.db").reset_index(drop=True)
+    df= ReadDb(query,"./MicroNeighbor/HousesDbNeighbor.db").reset_index(drop=True)
     data = {
         'schools': str(df["No of schools nearby"][0]),
         'airportDist': str(df["Distance from the airport"][0])

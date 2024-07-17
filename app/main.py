@@ -21,8 +21,8 @@ def main_page():
     end_index = start_index + PAGE_SIZE
 
     # Fetch data from API
-    api_response = requests.get('http://prices:5003/prices')
-
+    #api_response = requests.get('http://prices:5003/prices')
+    api_response = requests.get('http://housesprice-pricescontainer-1:5003/prices')
     if api_response.status_code == 200:
         house_prices = json.loads(api_response.content)
         total_count = len(house_prices)

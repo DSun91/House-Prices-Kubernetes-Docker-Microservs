@@ -43,7 +43,7 @@ def get_host_ip():
 def GetSpecs(id):
     query = f'SELECT * FROM ATable WHERE "id"=={id}'
 
-    df= ReadDb(query,"HousesSpecsDb.db").reset_index(drop=True)
+    df= ReadDb(query,"./MicroSpecs/HousesSpecsDb.db").reset_index(drop=True)
     print(df.columns)
     data = {
         'date': str(df["Date"][0]),

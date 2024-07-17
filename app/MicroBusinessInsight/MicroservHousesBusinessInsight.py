@@ -31,7 +31,7 @@ def ReadDb(query, DbName):
 @app.route("/business/<int:id>",methods=['GET'])
 def GetViews(id):
     query = f'SELECT * FROM ATable WHERE "id"=={id}'
-    df=ReadDb(query,"HousesDbBusinessInsight.db").reset_index(drop=True)
+    df=ReadDb(query,"./MicroBusinessInsight/HousesDbBusinessInsight.db").reset_index(drop=True)
     data = {
         'views': str(df["No of views"][0])
 
