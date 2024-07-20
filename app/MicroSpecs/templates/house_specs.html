@@ -4,78 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>House Specifications</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        }
+
+        .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+        padding: 20px;
+        }
+
+        h1 {
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 30px;
+        }
+
+        h1 i {
+        margin-right: 10px;
+        }
+
+        .specs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        }
+
+        .spec-card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .spec-card i {
+        font-size: 2em;
+        color: #3498db;
+        margin-bottom: 10px;
+        }
+
+        .spec-card h3 {
+        color: #2c3e50;
+        margin-top: 0;
+        }
+
+        .spec-card ul {
+        list-style-type: none;
+        padding: 0;
+        }
+
+        .spec-card li {
+        margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+        .container {
+        width: 95%;
+        }
+        }
+    </style>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>House Specifications</h1>
-        <div class="specs-table">
-            <table>
-                <tr>
-                    <th>Attribute</th>
-                    <th>Value</th>
-                </tr>
-                <tr>
-                    <td>Area Minus Basement</td>
-                    <td>{{ data.areaMinusBasement }}</td>
-                </tr>
-                <tr>
-                    <td>Basement Area</td>
-                    <td>{{ data.basement }}</td>
-                </tr>
-                <tr>
-                    <td>Bathrooms</td>
-                    <td>{{ data.bathrooms }}</td>
-                </tr>
-                <tr>
-                    <td>Bedrooms</td>
-                    <td>{{ data.bedrooms }}</td>
-                </tr>
-                <tr>
-                    <td>Build Year</td>
-                    <td>{{ data.buildYear }}</td>
-                </tr>
-                <tr>
-                    <td>Conditions</td>
-                    <td>{{ data.conditions }}</td>
-                </tr>
-                <tr>
-                    <td>Date</td>
-                    <td>{{ data.date }}</td>
-                </tr>
-                <tr>
-                    <td>Floors</td>
-                    <td>{{ data.floors }}</td>
-                </tr>
-                <tr>
-                    <td>Grade</td>
-                    <td>{{ data.grade }}</td>
-                </tr>
-                <tr>
-                    <td>Living Area</td>
-                    <td>{{ data.livingArea }}</td>
-                </tr>
-                <tr>
-                    <td>Living Area Renovated</td>
-                    <td>{{ data.livingAreaRenov }}</td>
-                </tr>
-                <tr>
-                    <td>Lot Area</td>
-                    <td>{{ data.lotArea }}</td>
-                </tr>
-                <tr>
-                    <td>Lot Area Renovated</td>
-                    <td>{{ data.lotAreaRenov }}</td>
-                </tr>
-                <tr>
-                    <td>Renovation Area</td>
-                    <td>{{ data.renovationArea }}</td>
-                </tr>
-                <tr>
-                    <td>Waterfront</td>
-                    <td>{{ data.waterfront }}</td>
-                </tr>
-            </table>
+        <h1><i class="fas fa-home"></i> House Specifications</h1>
+        <div class="specs-grid">
+            <div class="spec-card">
+                <i class="fas fa-vector-square"></i>
+                <h3>Area</h3>
+                <ul>
+                    <li><strong>Area Minus Basement:</strong> {{ data.areaMinusBasement }}</li>
+                    <li><strong>Basement Area:</strong> {{ data.basement }}</li>
+                    <li><strong>Living Area:</strong> {{ data.livingArea }}</li>
+                    <li><strong>Living Area Renovated:</strong> {{ data.livingAreaRenov }}</li>
+                    <li><strong>Lot Area:</strong> {{ data.lotArea }}</li>
+                    <li><strong>Lot Area Renovated:</strong> {{ data.lotAreaRenov }}</li>
+                    <li><strong>Renovation Area:</strong> {{ data.renovationArea }}</li>
+                </ul>
+            </div>
+            <div class="spec-card">
+                <i class="fas fa-bed"></i>
+                <h3>Rooms</h3>
+                <ul>
+                    <li><strong>Bathrooms:</strong> {{ data.bathrooms }}</li>
+                    <li><strong>Bedrooms:</strong> {{ data.bedrooms }}</li>
+                    <li><strong>Floors:</strong> {{ data.floors }}</li>
+                </ul>
+            </div>
+            <div class="spec-card">
+                <i class="fas fa-info-circle"></i>
+                <h3>Details</h3>
+                <ul>
+                    <li><strong>Build Year:</strong> {{ data.buildYear }}</li>
+                    <li><strong>Conditions:</strong> {{ data.conditions }}</li>
+                    <li><strong>Date:</strong> {{ data.date }}</li>
+                    <li><strong>Grade:</strong> {{ data.grade }}</li>
+                    <li><strong>Waterfront:</strong> {{ data.waterfront }}</li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>

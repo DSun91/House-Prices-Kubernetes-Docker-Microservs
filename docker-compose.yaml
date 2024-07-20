@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  businessinsightcotainer:
+  businessinsightimage:
     build:
       context: ./app
       dockerfile: Dockerfile
@@ -14,7 +14,7 @@ services:
     networks:
       - mytestnetwork
 
-  geolocontainer:
+  geolocimage:
     build:
       context: ./app
       dockerfile: Dockerfile
@@ -27,7 +27,7 @@ services:
     networks:
       - mytestnetwork
 
-  neighborcontainer:
+  neighborimage:
     build:
       context: ./app
       dockerfile: Dockerfile
@@ -41,7 +41,7 @@ services:
       - mytestnetwork
 
 
-  pricescontainer:
+  pricesimage:
     build:
       context: ./app
       dockerfile: Dockerfile
@@ -55,7 +55,7 @@ services:
       - mytestnetwork
  
 
-  housespecscontainer:
+  housespecsimage:
     build:
       context: ./app
       dockerfile: Dockerfile
@@ -68,7 +68,7 @@ services:
     networks:
       - mytestnetwork
  
-  mainappcontainer:
+  mainappimage:
     build:
       context: ./app
       dockerfile: Dockerfile

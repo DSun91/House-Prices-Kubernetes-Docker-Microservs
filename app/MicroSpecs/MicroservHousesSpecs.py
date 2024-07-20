@@ -44,6 +44,7 @@ def GetSpecs(id):
     query = f'SELECT * FROM ATable WHERE "id"=={id}'
 
     df= ReadDb(query,"./MicroSpecs/HousesSpecsDb.db").reset_index(drop=True)
+    #df = ReadDb(query, "HousesSpecsDb.db").reset_index(drop=True)
     print(df.columns)
     data = {
         'date': str(df["Date"][0]),
@@ -64,5 +65,5 @@ def GetSpecs(id):
     }
     return render_template("house_specs.html",data=data)
     #return jsonify(data)
-# if __name__ == '__main__':
-#     app.run(port=5004,debug=True)
+if __name__ == '__main__':
+    app.run(port=5004,debug=True)

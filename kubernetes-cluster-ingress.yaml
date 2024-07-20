@@ -1,0 +1,53 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myhouseprice-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: myhouseprice.com
+    http:
+      paths:
+      - path: /prices
+        pathType: Prefix
+        backend:
+          service:
+            name: priceserv
+            port:
+              number: 80
+      - path: /specs
+        pathType: Prefix
+        backend:
+          service:
+            name: specserv
+            port:
+              number: 80
+      - path: /business
+        pathType: Prefix
+        backend:
+          service:
+            name: viewserv
+            port:
+              number: 80
+      - path: /geoloc
+        pathType: Prefix
+        backend:
+          service:
+            name: geolocserv
+            port:
+              number: 80
+      - path: /neighbor
+        pathType: Prefix
+        backend:
+          service:
+            name: neighboorserv
+            port:
+              number: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mainserv
+            port:
+              number: 80

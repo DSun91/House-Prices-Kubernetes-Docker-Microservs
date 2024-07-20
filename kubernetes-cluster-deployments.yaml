@@ -1,0 +1,163 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: main
+  template:
+    metadata:
+      labels:
+        app: main
+    spec:
+      containers:
+      - name: housesprice-mainappcontainer-1
+        image: dsun91/housesprice-mainappimage
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5005
+        env:
+          - name: FLASK_APP
+            value: main.py
+          - name: PYTHONPATH
+            value: /app
+        command: ["flask", "run", "--host=0.0.0.0", "--port=5005"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: price
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: price
+  template:
+    metadata:
+      labels:
+        app: price
+    spec:
+      containers:
+      - name: housesprice-pricescontainer-1
+        image: dsun91/housesprice-pricesimage
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5003
+        env:
+          - name: FLASK_APP
+            value: MicroPrices/MicroservHousePrice.py
+          - name: PYTHONPATH
+            value: /app
+        command: ["flask", "run", "--host=0.0.0.0", "--port=5003"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: specs-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: specs
+  template:
+    metadata:
+      labels:
+        app: specs
+    spec:
+      containers:
+      - name: housesprice-housespecscontainer-1
+        image: dsun91/housesprice-housespecsimage
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5004
+        env:
+          - name: FLASK_APP
+            value: MicroSpecs/MicroservHousesSpecs.py
+          - name: PYTHONPATH
+            value: /app
+        command: ["flask", "run", "--host=0.0.0.0", "--port=5004"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: views
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: views
+  template:
+    metadata:
+      labels:
+        app: views
+    spec:
+      containers:
+      - name: housesprice-businessinsight-1
+        image: dsun91/housesprice-businessinsightimage
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        env:
+          - name: FLASK_APP
+            value: MicroBusinessInsight/MicroservHousesBusinessInsight.py
+          - name: PYTHONPATH
+            value: /app
+        command: ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neighboor
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: neighboors
+  template:
+    metadata:
+      labels:
+        app: neighboors
+    spec:
+      containers:
+      - name: housesprice-neighborcontainer-1
+        image: dsun91/housesprice-neighborimage
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5002
+        env:
+          - name: FLASK_APP
+            value: MicroNeighbor/MicroservHousesNeighbor.py
+          - name: PYTHONPATH
+            value: /app
+        command: ["flask", "run", "--host=0.0.0.0", "--port=5002"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geoloc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: geolocation
+  template:
+    metadata:
+      labels:
+        app: geolocation
+    spec:
+      containers:
+      - name: housesprice-geolocontainer-1
+        image: dsun91/housesprice-geolocimage
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5001
+        env:
+          - name: FLASK_APP
+            value: MicroGeoLoc/MicroservHousesGeoLoc.py
+          - name: PYTHONPATH
+            value: /app
+        command: ["flask", "run", "--host=0.0.0.0", "--port=5001"]
+

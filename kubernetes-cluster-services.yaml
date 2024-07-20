@@ -1,0 +1,79 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mainserv
+spec:
+  type: ClusterIP
+  selector:
+    app: main
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5005
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: specserv
+spec:
+  type: ClusterIP
+  selector:
+    app: specs
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5004
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: priceserv
+spec:
+  type: ClusterIP
+  selector:
+    app: price
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5003
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: viewserv
+spec:
+  type: ClusterIP
+  selector:
+    app: views
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: neighboorserv
+spec:
+  type: ClusterIP
+  selector:
+    app: neighboors
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5002
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: geolocserv
+spec:
+  type: ClusterIP
+  selector:
+    app: geolocation
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5001

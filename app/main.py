@@ -5,6 +5,9 @@ import requests
 import json
 import pandas as pd
 import socket
+import logging
+logging.basicConfig(level=logging.DEBUG)
+
 app = Flask(__name__)
 
 
@@ -22,7 +25,15 @@ def main_page():
 
     # Fetch data from API
     #api_response = requests.get('http://prices:5003/prices')
-    api_response = requests.get('http://housesprice-pricescontainer-1:5003/prices')
+    #api_response = requests.get('http://housesprice-pricescontainer-1:5003/prices')
+
+    try:
+        logging.debug("Attempting to connect to price service")
+        api_response = requests.get('http://priceserv:80/prices')
+        logging.debug(f"Received response: {api_response.status_code}")
+        # process the response
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Error connecting to price service: {e}")
     if api_response.status_code == 200:
         house_prices = json.loads(api_response.content)
         total_count = len(house_prices)
