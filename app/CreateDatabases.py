@@ -40,7 +40,7 @@ class CreateDB:
     def CreateAllDBs(self):
 
 
-        dfComplete = pd.read_csv("House Price India.csv")
+        dfComplete = pd.read_csv("CompleteDataDB.csv")
 
         dfGeoLoc = dfComplete[['id', 'Postal Code', 'Lattitude', 'Longitude']]
 
@@ -70,6 +70,6 @@ class CreateDB:
 
 
 
-# dbCreator=CreateDB()
-# dbCreator.CreateAllDBs()
+dbCreator=CreateDB()
+dbCreator.CreateAllDBs()
 

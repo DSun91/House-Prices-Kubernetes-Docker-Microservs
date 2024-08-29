@@ -1,0 +1,56 @@
+
+// for Single container
+docker-compose build down
+docker compose up --build
+docker tag housepriceskubernetes-dockermicroservs-housespecsimage dsun91/housesprice-housespecsimage
+docker push dsun91/housesprice-housespecsimage
+kubectl apply -f kubernetes-cluster-deployments.yaml
+kubectl rollout restart deployment specs-app
+
+//for all containers
+
+docker compose down
+
+docker compose up --build
+
+
+
+docker tag housepriceskubernetes-dockermicroservs-mainappimage dsun91/housesprice-mainappimage
+
+docker tag housepriceskubernetes-dockermicroservs-housespecsimage dsun91/housesprice-housespecsimage
+
+docker tag housepriceskubernetes-dockermicroservs-pricesimage dsun91/housesprice-pricesimage
+
+docker tag housepriceskubernetes-dockermicroservs-geolocimage dsun91/housesprice-geolocimage
+
+docker tag housepriceskubernetes-dockermicroservs-neighborimage dsun91/housesprice-neighborimage
+
+docker tag housepriceskubernetes-dockermicroservs-businessinsightimage dsun91/housesprice-businessinsightimage
+
+
+
+
+docker push dsun91/housesprice-mainappimage
+
+docker push dsun91/housesprice-pricesimage
+
+docker push dsun91/housesprice-housespecsimage
+
+docker push dsun91/housesprice-geolocimage
+
+docker push dsun91/housesprice-neighborimage
+
+docker push dsun91/housesprice-businessinsightimage
+
+
+//Kubernetes cluster
+
+kubectl config use-context docker-desktop
+
+
+kubectl apply -f kubernetes-cluster-deployments.yaml
+
+kubectl apply -f kubernetes-cluster-services.yaml
+
+kubectl apply -f kubernetes-cluster-ingress.yaml
+

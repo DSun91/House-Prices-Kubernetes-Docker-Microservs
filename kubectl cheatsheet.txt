@@ -1,0 +1,38 @@
+kubectl get po,svc
+
+minikube service mainserv
+
+kubectl get svc mainserv
+
+kubectl logs main-54686f9d8f-bffsc
+
+kubectl delete deployments --all --all-namespaces
+
+kubectl delete services --all --all-namespaces
+
+kubectl delete pods --all --all-namespaces
+
+kubectl rollout restart deployment kubernetes-cluster-deployments.yaml
+
+
+kubectl exec -it deployment/main -- python -c "import requests; print(requests.get('http://priceserv:80/prices').text)"
+
+
+
+kubectl scale deployment --all --replicas=0
+
+
+kubectl exec -it <pod name> -- /bin/sh
+
+
+kubectl get pods -n ingress-nginx
+
+kubectl describe ingress myhouseprice-ingress
+
+kubectl logs -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx
+
+C:\Windows\System32\drivers\etc
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.1/deploy/static/provider/cloud/deploy.yaml
+
+kubectl apply -f ingress.yaml
